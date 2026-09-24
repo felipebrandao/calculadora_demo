@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+:root {
+  --font-headline: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Colors based on Stitch "Precision Metric" System */
+  --bg-app: #0e1014;
+  --bg-mesh-1: rgba(13, 153, 255, 0.07);
+  --bg-mesh-2: rgba(255, 159, 10, 0.06);
+
+  --surface-base: #12141a;
+  --surface-card: #161922;
+  --surface-container: #1c202a;
+  --surface-container-high: #242936;
+  --surface-container-highest: #2e3445;
+  --surface-overlay: rgba(22, 25, 34, 0.85);
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-active: rgba(13, 153, 255, 0.5);
+
+  --primary: #0d99ff;
+  --primary-hover: #38abff;
+  --primary-glow: rgba(13, 153, 255, 0.35);
+  --primary-container: rgba(13, 153, 255, 0.14);
+  --primary-text: #9fcaff;
+  --on-primary: #ffffff;
+
+  --secondary: #ff9f0a;
+  --secondary-hover: #ffad2b;
+  --secondary-glow: rgba(255, 159, 10, 0.35);
+  --secondary-container: rgba(255, 159, 10, 0.14);
+  --secondary-text: #ffc07a;
+  --on-secondary: #ffffff;
+
+  --tertiary: #ff453a;
+  --tertiary-hover: #ff5e54;
+  --tertiary-glow: rgba(255, 69, 58, 0.35);
+  --tertiary-container: rgba(255, 69, 58, 0.14);
+  --tertiary-text: #ff8b85;
+
+  --success: #10b981;
+  --success-container: rgba(16, 185, 129, 0.14);
+
+  --text-main: #f4f5f8;
+  --text-muted: #9aa2b4;
+  --text-dim: #60687a;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.65);
+  --shadow-glow-primary: 0 0 24px rgba(13, 153, 255, 0.25);
+  --shadow-glow-secondary: 0 0 24px rgba(255, 159, 10, 0.25);
+
+  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Tabular lining figures for numbers to eliminate optical jump */
+.font-mono, .tabular-nums {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.font-headline {
+  font-family: var(--font-headline);
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* Tactile button push micro-animation */
+.tactile-key {
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.tactile-key:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.tactile-key:active {
+  transform: translateY(1.5px) scale(0.985);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Keypad pulse ripple when activated via keyboard */
+.key-pressed-pulse {
+  animation: keyPulse 220ms ease-out;
+}
+
+@keyframes keyPulse {
+  0% {
+    transform: scale(0.95);
+    filter: brightness(1.4);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Ambient backdrop lights */
+.ambient-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+}
